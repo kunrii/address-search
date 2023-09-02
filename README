@@ -2,19 +2,19 @@ Simple app to demonstrate address insertion and search
 
 Frontend notes:
 
-run npm install
+run the command: npm install
     to run the application you need to install the packages
 
-set PORT=3000 && react-scripts start
+the following command inside a script: set PORT=3000 && react-scripts start
     is meant for running on windows, on Linux it will be different
     you can choose another port, but make sure to update the CORS settings on the backend
 
 Backend notes:
 
-dotnet restore 
+run the command: dotnet restore 
     is required before running the application 
 
-dotnet run 
+run the command: dotnet run 
     to build and run the application 
 
 you need the appsettings.* json files to be present in the same directory the backend is running on, when you obtain them place them there 
