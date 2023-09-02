@@ -1,30 +1,33 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import ListPage from './ListPage';
+import AddPage from './AddPage';
+import MapPage from './MapPage';
+import Navbar from './Navbar';
 import './frontend.css';
-import LoginPage from './LoginPage';
+import { useState } from 'react';
 import HomePage from './HomePage';
-import { useEffect, useState } from 'react';
 
 function App() {
 
-    const [logginToken, setLogginToken] = useState(localStorage.getItem("loggin_token"))
+    // useEffect(() => {
+    //     localStorage.setItem("username", "root")
+    //     localStorage.setItem("password", "root")
+    // }, [])
 
-    useEffect(() => {
-        setLogginToken(localStorage.getItem("loggin_token"))
-    }, [])
+    const [isLoggedIn, setIsLoggedIn] = useState(false)
+    // const [isListEnabled, setIsListEnabled] = useState(false);
 
     return (
-        <div className="App">
-            <header className="App-header">
-                {/* <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn Reacteeeeeeeeeee
-                </a> */}
-                {logginToken ? <HomePage/> : <LoginPage/>}
-            </header>
-        </div>
+        <Router className="app">
+            {isLoggedIn && <Navbar setIsLoggedIn={setIsLoggedIn} />}
+            <Routes>
+                <Route path="/" element={<HomePage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />} />
+                <Route path="/add" element={<AddPage isLoggedIn={isLoggedIn} />} />
+                <Route path="/map" element={<MapPage isLoggedIn={isLoggedIn} />} />
+                <Route path="/list" element={<ListPage isLoggedIn={isLoggedIn} />} />
+            </Routes>
+        </Router>
     );
 }
 
